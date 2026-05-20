@@ -822,6 +822,45 @@ const _defs = [
         },
     },
 
+    // MARK: Capture
+    {
+        safeName: "unity_capture_panel",
+        bridgeName: "unity.capture.panel",
+        description: "Capture a UI Toolkit PanelSettings to a PNG (returned as an image content block). Renders to an off-screen RenderTexture so output has no Scene chrome. Works in both edit-mode and play-mode. If panelPath is omitted, uses the first PanelSettings found via UIDocuments in loaded scenes.",
+        inputSchema: {
+            type: "object",
+            properties: {
+                panelPath: {
+                    type: "string",
+                    description: "Optional asset path to a PanelSettings (e.g. 'Assets/Singtaa/OneJS/Resources/OneJS/PanelSettings.asset'). Omit to auto-detect from active UIDocuments."
+                },
+                width: {
+                    type: "integer",
+                    minimum: 32,
+                    maximum: 8192,
+                    description: "Capture width in pixels. Defaults to 1920."
+                },
+                height: {
+                    type: "integer",
+                    minimum: 32,
+                    maximum: 8192,
+                    description: "Capture height in pixels. Defaults to 1080."
+                }
+            },
+            additionalProperties: false,
+        },
+    },
+    {
+        safeName: "unity_capture_game_view",
+        bridgeName: "unity.capture.gameView",
+        description: "Capture the Game view to a PNG (returned as an image content block). In play mode uses ScreenCapture.CaptureScreenshotAsTexture (reliable). In edit mode reads the open Game window's render texture via reflection (may need the Game view open and visible). For UI-only captures prefer unity_capture_panel.",
+        inputSchema: {
+            type: "object",
+            properties: {},
+            additionalProperties: false,
+        },
+    },
+
     // MARK: Reflection
     {
         safeName: "unity_reflection_search_types",

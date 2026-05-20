@@ -132,6 +132,10 @@ namespace UnityMcp {
                 ["unity.prefab.getHierarchy"] = Tools_Prefab.GetHierarchy,
                 ["unity.prefab.findComponent"] = Tools_Prefab.FindComponent,
 
+                // Capture
+                ["unity.capture.panel"] = Tools_Capture.CapturePanel,
+                ["unity.capture.gameView"] = Tools_Capture.CaptureGameView,
+
                 // Reflection
                 ["unity.reflection.searchTypes"] = Tools_Reflection.SearchTypes,
                 ["unity.reflection.getTypeInfo"] = Tools_Reflection.GetTypeInfo,

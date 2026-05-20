@@ -1,10 +1,21 @@
+using Newtonsoft.Json;
+
 namespace UnityMcp {
     /// <summary>
-    /// Content block for MCP tool results.
+    /// Content block for MCP tool results. Supports text and image content
+    /// (data/mimeType are omitted from JSON when null so text-only blocks stay clean).
     /// </summary>
     public sealed class ContentBlock {
         public string type;
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public string text;
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public string data;
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public string mimeType;
     }
 
     /// <summary>
@@ -46,6 +57,33 @@ namespace UnityMcp {
 
         public static ToolResult Error(string message) {
             return Text(message, isError: true);
+        }
+
+        public static ToolResult Image(string base64Data, string mimeType = "image/png", bool isError = false) {
+            return new ToolResult {
+                content = new[] {
+                    new ContentBlock {
+                        type = "image",
+                        data = base64Data ?? "",
+                        mimeType = mimeType ?? "image/png"
+                    }
+                },
+                isError = isError
+            };
+        }
+
+        public static ToolResult ImageWithText(string base64Data, string mimeType, string text, bool isError = false) {
+            return new ToolResult {
+                content = new[] {
+                    new ContentBlock {
+                        type = "image",
+                        data = base64Data ?? "",
+                        mimeType = mimeType ?? "image/png"
+                    },
+                    new ContentBlock { type = "text", text = text ?? "" }
+                },
+                isError = isError
+            };
         }
     }
 

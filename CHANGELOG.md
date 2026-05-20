@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- **Capture tools** for grabbing the rendered output as PNG (returned as MCP image content blocks):
+  - `unity_capture_panel` - Render a UI Toolkit `PanelSettings` to an off-screen `RenderTexture` and return the PNG. Works reliably in play mode (no Scene chrome, ideal for OneJS UI feedback loops). Auto-detects the active `PanelSettings` from `UIDocument`s in loaded scenes if `panelPath` is omitted. **Known limitation:** in edit mode the first capture after `targetTexture` is reassigned renders a blank texture; use play mode for now.
+  - `unity_capture_game_view` - Capture the Game view to PNG. Uses `ScreenCapture.CaptureScreenshotAsTexture` in play mode. **Known limitation:** edit-mode capture is not supported in Unity 6.3+ because `PlayModeView.targetTexture` is not accessible via reflection in this version.
+- **Image content block** support in `ContentBlock` (`data` + `mimeType` fields, omitted from JSON when null so existing text tools are unaffected). New helpers: `ToolResultUtil.Image` and `ToolResultUtil.ImageWithText`.
+
 ## [1.0.1] - 2026-03-04
 
 ### Fixed

@@ -7,7 +7,7 @@ A [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server for Un
 
 ## Features
 
-- **69 Tools** for manipulating scenes, GameObjects, components, prefabs, transforms, reflection, and more
+- **71 Tools** for manipulating scenes, GameObjects, components, prefabs, transforms, reflection, capture, and more
 - **MCP Resources** for live access to console logs, scene hierarchy, test results, and project files
 - **Auto-start Node.js server** - no manual setup required
 - **Editor Window** for monitoring and configuration
@@ -113,6 +113,12 @@ Settings are stored in `ProjectSettings/McpSettings.json`:
 - `unity_test_get_results` - Get test results by `runId`
 
 > **Note:** After domain reload (script recompilation), wait ~1 second before calling test tools. If `unity_test_list` returns `status: "not_ready"`, you can still run tests directly with `unity_test_run` (without filter) and see all tests in the results.
+
+### Capture
+- `unity_capture_panel` - Render a UI Toolkit `PanelSettings` to a PNG (returned as an MCP `image` content block). Renders to an off-screen `RenderTexture` so the output has no Scene chrome. Auto-detects the active panel via `UIDocument`s in loaded scenes if `panelPath` is omitted.
+- `unity_capture_game_view` - Capture the Game view to a PNG. Uses `ScreenCapture.CaptureScreenshotAsTexture` in play mode.
+
+> **Note:** `unity_capture_panel` currently produces a blank image in edit mode (offscreen render doesn't fire on the first frame after `targetTexture` is reassigned). Use play mode for reliable panel captures until this is resolved. `unity_capture_game_view` only works in play mode in Unity 6.3+ (`PlayModeView.targetTexture` is not exposed via reflection in edit mode).
 
 ### Project & Assets
 - `unity_project_list_files` - List project files
