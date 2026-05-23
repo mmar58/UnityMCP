@@ -1,6 +1,6 @@
 # Unity MCP Server
 
-[![Unity 6+](https://img.shields.io/badge/Unity-6%2B-blue.svg)](https://unity.com/)
+[![Unity 2022.3+](https://img.shields.io/badge/Unity-2022.3%2B-blue.svg)](https://unity.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 A [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server for Unity Editor, enabling AI assistants like Claude to interact with Unity projects.
@@ -15,7 +15,7 @@ A [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server for Un
 
 ## Requirements
 
-- Unity 6 or later
+- Unity 2022.3 LTS or later (Unity 6 recommended)
 - Node.js 18 or later
 
 ## Installation

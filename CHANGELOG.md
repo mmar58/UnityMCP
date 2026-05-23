@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Lowered minimum Unity version from `6000.0` to `2022.3` LTS. No code changes were required: all Unity APIs in use are available in 2022.2+, and internal UIElements reflection calls (`UIElementsRuntimeUtility.UpdatePanels`/`RenderOffscreenPanels`/`BaseRuntimePanel.RenderPanel`) have null-checks that degrade gracefully if signatures differ. Unity 6 remains the recommended target.
+
 ### Added
 
 - **Capture tools** for grabbing the rendered output as PNG (returned as MCP image content blocks):
